@@ -17,8 +17,11 @@ app.get('/', (req, res) => {
 });
 // Define the first route of the App
 app.get('/hello', (req, res) => {
-    // Send hello world
-    res.send('welcome to GET route');
+    const name = req.query.name || 'OpenBootcamp!';
+    res.send(`Hola, ${name}!`);
+});
+app.get('/goodbye', (req, res) => {
+    res.send('Goodbye, world');
 });
 //Execute the App and listen the port
 app.listen(port, () => {
