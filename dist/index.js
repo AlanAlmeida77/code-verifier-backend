@@ -3,28 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-//configuration the .env file
+const index_1 = __importDefault(require("./src/server/index"));
+const logger_1 = require("./src/utils/logger");
+// Configuration the .env file
 dotenv_1.default.config();
-// Create Express App
-const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
-// Define the first route of the App
-app.get('/', (req, res) => {
-    // Send hello world
-    res.send('welcome to the API Restful: Express + TS + Swagger + mongoose');
+// Execute server
+index_1.default.listen(port, () => {
+    (0, logger_1.LogSuccess)(`[SERVER ON]: Running in http://localhost:${port}/api`);
 });
-// Define the first route of the App
-app.get('/hello', (req, res) => {
-    const name = req.query.name || 'OpenBootcamp!';
-    res.send(`Hola, ${name}!`);
-});
-app.get('/goodbye', (req, res) => {
-    res.send('Goodbye, world');
-});
-//Execute the App and listen the port
-app.listen(port, () => {
-    console.log(`Express server: running at http://localhost:${port}`);
+// Control SERVER ERROR
+index_1.default.on('error', (error) => {
+    (0, logger_1.LogError)(`[SERVER ERROR]: ${error}`);
 });
 //# sourceMappingURL=index.js.map
