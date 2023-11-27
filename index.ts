@@ -2,17 +2,17 @@ import dotenv from 'dotenv';
 import server from './src/server/index';
 import { LogError, LogSuccess } from './src/utils/logger';
 
-// Configuration the .env file
+// * Configuration the .env file
 dotenv.config();
 
 const port = process.env.PORT || 8000;
 
-// Execute server
+// * Execute server
 server.listen(port, () => {
     LogSuccess(`[SERVER ON]: Running in http://localhost:${port}/api`);
 });
 
-// Control SERVER ERROR
+// * Control SERVER ERROR
 server.on('error', (error) => {
     LogError(`[SERVER ERROR]: ${error}`);
 })
