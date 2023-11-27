@@ -33,6 +33,7 @@ server.use(express.urlencoded({extended: true, limit: '50mb'}));
 server.use(express.json({limit: '50mb'}));
 
 // http://localhost:8000/ --> http://localhost:8000/api/
+// * Redirecting config
 server.get('/', (req: Request, res: Response) => {
     res.redirect('/api');
 });
