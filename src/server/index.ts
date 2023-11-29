@@ -22,6 +22,9 @@ server.use(
     rootRuter
 );
 
+// Static server
+server.use(express.static('public'));
+
 //TODO moongose conecction
 
 //Security config
